@@ -22,7 +22,6 @@ jobs:
         username: admin
         password: SaMpLePaSs+2016
 
-
 networks:
   - name: nessus-manager
     subnets:
