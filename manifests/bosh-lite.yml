@@ -1,0 +1,55 @@
+---
+name: nessus-manager
+
+director_uuid: <%= `bosh status --uuid` %>
+
+releases:
+  - name: nessus-manager
+    version: latest
+
+jobs:
+  - name: nessus-manager
+    instances: 1
+    templates:
+      - name: nessus-manager
+        release: nessus-manager
+    resource_pool: nessus-manager
+    networks:
+      - name: nessus-manager
+    properties:
+      nessus-manager:
+        license: EVAL-AAAA-BBBB-CCCC-DDDD
+        username: admin
+        password: SaMpLePaSs+2016
+
+
+networks:
+  - name: nessus-manager
+    subnets:
+      - range: 10.244.18.0/29
+        reserved: [10.244.18.1]
+        static: []
+        cloud_properties:
+          name: random
+
+resource_pools:
+  - name: nessus-manager
+    network: nessus-manager
+    stemcell:
+      name: bosh-warden-boshlite-ubuntu-trusty-go_agent
+      version: latest
+    cloud_properties:
+      name: random
+
+compilation:
+  workers: 3
+  network: nessus-manager
+  cloud_properties:
+    name: random
+
+update:
+  canaries: 1
+  max_in_flight: 3
+  serial: false
+  canary_watch_time: 1000-240000
+  update_watch_time: 1000-240000

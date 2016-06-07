@@ -1,0 +1,7 @@
+---
+name: nessus-manager
+
+dependencies: []
+
+files:
+- nessus-manager/*.deb

@@ -1,0 +1,20 @@
+---
+name: nessus-manager
+packages:
+- nessus-manager
+properties:
+  nessus-manager.license:
+    description: "[required] Nessus Manager license key"
+    default: EVAL-AAAA-BBBB-CCCC-DDDD
+  nessus-manager.username:
+    description: "[required] Nessus Manager initial admin user"
+    default: admin
+  nessus-manager.password:
+    description: "[required] Nessus Manager initial password"
+    default: SaMpLePaSs+2016
+templates:
+  bin/ctl: bin/ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh.erb: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
