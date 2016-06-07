@@ -29,7 +29,7 @@ networks:
         reserved: [10.244.18.1]
         static: []
         cloud_properties:
-          name: random
+          name: nessus-manager
 
 resource_pools:
   - name: nessus-manager
@@ -38,13 +38,13 @@ resource_pools:
       name: bosh-warden-boshlite-ubuntu-trusty-go_agent
       version: latest
     cloud_properties:
-      name: random
+      name: nessus-manager
 
 compilation:
   workers: 3
   network: nessus-manager
   cloud_properties:
-    name: random
+    name: nessus-manager
 
 update:
   canaries: 1
