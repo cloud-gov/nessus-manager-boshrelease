@@ -1,4 +1,4 @@
-# BOSH Release for the nessus manager
+# BOSH Release for the Nessus Manager
 
 ## Usage
 
