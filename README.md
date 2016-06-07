@@ -9,7 +9,9 @@ cd cg-nessus-manager-boshrelease
 bosh upload release releases/nessus-manager/nessus-manager-1.yml
 ```
 
-A license key and administrator credentials are required.  Note, although a license key is required by this release, it can be an invalid key; A valid key can be entered later via the web UI or command line.
+A license key and administrator credentials are required.  Note that although a license key is required by this release, it can be an invalid key; A valid key can be entered later via the web UI or command line.
 
-See the spec at `jobs/nessus-manager/spec` and example manifest at `manifests/bosh-lite.yml`.
+For configuration information, see the spec at `jobs/nessus-manager/spec` and example manifest at `manifests/bosh-lite.yml`.
+
+After deployment, the web UI is available at https://IP_ADDRESS_IN_MANIFEST:8834 with an SSL certificate signed by Nessus Certification Authority.
 
