@@ -63,7 +63,7 @@ ln -sf $PIDFILE $RUN_DIR/$output_label.pid
 ln -sf /opt/nessus/var/nessus/logs $LOG_DIR
 
 if [[ ! -f /opt/nessus/sbin/nessuscli ]]; then
-  # Install package and remove start scripts in /etc
+  # Install package and remove init scripts in /etc
   dpkg -i /var/vcap/packages/nessus-manager/Nessus-6.7.0-ubuntu1110_amd64.deb
   update-rc.d -f nessusd remove
   rm /etc/init.d/nessusd
