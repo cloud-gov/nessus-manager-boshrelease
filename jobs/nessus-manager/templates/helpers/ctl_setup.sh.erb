@@ -29,20 +29,7 @@ redirect_output ${output_label}
 
 export HOME=${HOME:-/home/vcap}
 
-# Add all packages' /bin & /sbin into $PATH
-for package_bin_dir in $(ls -d /var/vcap/packages/*/*bin)
-do
-  export PATH=${package_bin_dir}:$PATH
-done
-
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:-''} # default to empty
-for package_bin_dir in $(ls -d /var/vcap/packages/*/lib)
-do
-  export LD_LIBRARY_PATH=${package_bin_dir}:$LD_LIBRARY_PATH
-done
-
 # Setup log, run and tmp folders
-
 export RUN_DIR=/var/vcap/sys/run/$JOB_NAME
 export LOG_DIR=/var/vcap/sys/log/$JOB_NAME
 export TMP_DIR=/var/vcap/sys/tmp/$JOB_NAME
@@ -55,30 +42,7 @@ do
 done
 export TMPDIR=$TMP_DIR
 
-export C_INCLUDE_PATH=/var/vcap/packages/mysqlclient/include/mysql:/var/vcap/packages/sqlite/include:/var/vcap/packages/libpq/include
-export LIBRARY_PATH=/var/vcap/packages/mysqlclient/lib/mysql:/var/vcap/packages/sqlite/lib:/var/vcap/packages/libpq/lib
-
 PIDFILE=/opt/nessus/var/nessus/nessus-service.pid
 ln -sf $PIDFILE $RUN_DIR/$output_label.pid
-ln -sf /opt/nessus/var/nessus/logs $LOG_DIR
-
-if [[ ! -f /opt/nessus/sbin/nessuscli ]]; then
-  # Install package and remove init scripts in /etc
-  dpkg -i /var/vcap/packages/nessus-manager/Nessus-6.7.0-ubuntu1110_amd64.deb
-  update-rc.d -f nessusd remove
-  rm /etc/init.d/nessusd
-
-  # Add an admin user (be sure to use tabs for indentation here)
-  /opt/nessus/sbin/nessuscli adduser <%= p("nessus-manager.username") %> <<-EOF
-	<%= p("nessus-manager.password") %>
-	<%= p("nessus-manager.password") %>
-	y
-	
-	y
-	EOF
-
-  # Install the license (do this last in case the license is already used and we exit with non-zero)
-  /opt/nessus/sbin/nessuscli fetch --register <%= p("nessus-manager.license") %>
-fi
 
 echo '$PATH' $PATH
