@@ -34,6 +34,7 @@ EOF
     fi
     NESSUS_PREFIX="/opt/nessus"
     NESSUS_SERVICE=${NESSUS_PREFIX}/sbin/nessus-service
+    NESSUS_HOME=$STORE_DIR
 
     exec $NESSUS_SERVICE -D -q \
          >>$LOG_DIR/$JOB_NAME.log 2>&1
