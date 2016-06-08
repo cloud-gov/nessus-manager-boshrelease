@@ -16,9 +16,10 @@ jobs:
     resource_pool: nessus-manager
     networks:
       - name: nessus-manager
+    persistent_disk: 512
     properties:
       nessus-manager:
-        license: EVAL-AAAA-BBBB-CCCC-DDDD
+        license: AAAA-BBBB-CCCC-DDDD-EEEE
         username: admin
         password: SaMpLePaSs+2016
 

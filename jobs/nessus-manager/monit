@@ -1,5 +1,5 @@
 check process nessus-service
-  with pidfile /opt/nessus/var/nessus/nessus-service.pid
+  with pidfile /var/vcap/store/nessus-manager/opt/nessus/var/nessus/nessus-service.pid
   start program "/var/vcap/jobs/nessus-manager/bin/monit_debugger nessus-manager '/var/vcap/jobs/nessus-manager/bin/ctl start'"
   stop program "/var/vcap/jobs/nessus-manager/bin/monit_debugger nessus-manager '/var/vcap/jobs/nessus-manager/bin/ctl stop'"
   group vcap
