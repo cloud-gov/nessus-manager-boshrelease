@@ -43,5 +43,5 @@ For configuration information, see the spec at `jobs/nessus-manager/spec` and ex
 
 Nessus resides on a persistent disk; size the disk accordingly.
 
-After deployment, the web UI is available at https://IP_ADDRESS_IN_MANIFEST:8834 with an SSL certificate signed by Nessus Certification Authority.
+After deployment, the web UI is available at https://10.244.18.2:8834 (for a bosh-lite deployment) with an SSL certificate signed by Nessus Certification Authority.
 
