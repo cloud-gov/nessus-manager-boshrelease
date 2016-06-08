@@ -39,7 +39,7 @@ case $1 in
 
       # Install the license but don't exit if it fails
       set +e
-	  ${NESSUS_PREFIX}/sbin/nessuscli fetch --register <%= p("nessus-manager.license") %>
+	  $NESSUS_HOME/sbin/nessuscli fetch --register <%= p("nessus-manager.license") %>
     fi
 
     # Start the service
