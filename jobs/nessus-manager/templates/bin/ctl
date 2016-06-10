@@ -15,6 +15,7 @@ case $1 in
 
     NESSUS_HOME="/var/vcap/store/nessus-manager/opt/nessus"
 
+    ln -sf $NESSUS_HOME /opt/nessus
     ln -sf $NESSUS_HOME/var/nessus/logs $LOG_DIR
 
     if [[ ! -f $NESSUS_HOME/sbin/nessuscli ]]; then
@@ -26,7 +27,6 @@ case $1 in
       # Move Nessus to the persistent disk and link from the original location
       mkdir /var/vcap/store/nessus-manager/opt
       mv /opt/nessus /var/vcap/store/nessus-manager/opt
-      ln -s $NESSUS_HOME /opt/nessus
 
       # Add an admin user (be sure to use tabs for indentation here)
       $NESSUS_HOME/sbin/nessuscli adduser <%= p("nessus-manager.username") %> <<-EOF
