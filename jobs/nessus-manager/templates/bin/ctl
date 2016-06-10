@@ -15,9 +15,6 @@ case $1 in
 
     NESSUS_HOME="/var/vcap/store/nessus-manager/opt/nessus"
 
-    ln -sf $NESSUS_HOME /opt/nessus
-    ln -sf $NESSUS_HOME/var/nessus/logs $LOG_DIR
-
     if [[ ! -f $NESSUS_HOME/sbin/nessuscli ]]; then
       # Install package if needed and remove init scripts in /etc
       dpkg -i /var/vcap/packages/nessus-manager/Nessus-6.7.0-ubuntu1110_amd64.deb
@@ -41,6 +38,9 @@ case $1 in
       set +e
       $NESSUS_HOME/sbin/nessuscli fetch --register <%= p("nessus-manager.license") %>
     fi
+
+    ln -sf $NESSUS_HOME /opt/nessus
+    ln -sf $NESSUS_HOME/var/nessus/logs $LOG_DIR
 
     # Start the service
     exec $NESSUS_HOME/sbin/nessus-service -D -q \
