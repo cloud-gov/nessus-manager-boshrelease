@@ -2,6 +2,7 @@
 name: nessus-manager
 packages:
 - nessus-manager
+- jq-1.5
 properties:
   nessus-manager.license:
     description: "[required] Nessus Manager license key"
@@ -14,8 +15,10 @@ properties:
     default: SaMpLePaSs+2016
 templates:
   bin/ctl: bin/ctl
-  bin/monit_debugger: bin/monit_debugger
   bin/health.sh: bin/health.sh
+  bin/monit_debugger: bin/monit_debugger
+  bin/purge-agents.sh: bin/purge-agents.sh
+  config/crontab: config/crontab
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh.erb: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
