@@ -3,3 +3,7 @@ nessus-manager/Nessus-6.7.0-ubuntu1110_amd64.deb:
   object_id: e21a48f1-61d9-4dfd-98a4-8fb80ac8341e
   sha: 183d4e9dcaeb184cd20c579fa66106ab185c9ef5
   size: 32669834
+jq/jq-1.5.gz:
+  object_id: 6c933704-2057-4fa6-938b-ae67d9d51e30
+  sha: 2e281d558b5d2c4695f9a9de87dca70d3e7cdc16
+  size: 1364760

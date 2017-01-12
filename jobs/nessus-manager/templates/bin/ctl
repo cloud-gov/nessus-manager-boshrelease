@@ -11,6 +11,10 @@ export LANG=en_US.UTF-8
 case $1 in
 
   start)
+    # install a cronjob to purge agents
+    cp ${JOB_DIR}/config/crontab /etc/cron.d/${JOB_NAME}
+    touch /etc/crontab
+
     pid_guard $PIDFILE $JOB_NAME
 
     NESSUS_HOME="/var/vcap/store/nessus-manager/opt/nessus"
