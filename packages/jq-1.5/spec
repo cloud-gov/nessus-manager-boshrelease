@@ -1,0 +1,5 @@
+---
+name: jq-1.5
+
+files:
+  - jq/jq-1.5.gz

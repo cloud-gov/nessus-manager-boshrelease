@@ -1,0 +1,6 @@
+#! /bin/bash
+set -e
+
+mkdir -p $BOSH_INSTALL_TARGET/bin
+gunzip -c jq/jq-1.5.gz > $BOSH_INSTALL_TARGET/bin/jq
+chmod +x $BOSH_INSTALL_TARGET/bin/jq
