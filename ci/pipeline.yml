@@ -41,6 +41,7 @@ resources:
     regexp: nessus-manager-(.*).tgz
     access_key_id: {{s3-bosh-releases-access-key-id}}
     secret_access_key: {{s3-bosh-releases-secret-access-key}}
+    region_name: {{region}}
     server_side_encryption: AES256
 - name: final-builds-dir-tarball
   type: s3
@@ -49,6 +50,7 @@ resources:
     versioned_file: final-builds-dir-nessus-manager.tgz
     access_key_id: {{s3-bosh-releases-access-key-id}}
     secret_access_key: {{s3-bosh-releases-secret-access-key}}
+    region_name: {{region}}
     server_side_encryption: AES256
 - name: releases-dir-tarball
   type: s3
@@ -57,4 +59,5 @@ resources:
     versioned_file: releases-dir-nessus-manager.tgz
     access_key_id: {{s3-bosh-releases-access-key-id}}
     secret_access_key: {{s3-bosh-releases-secret-access-key}}
+    region_name: {{region}}
     server_side_encryption: AES256
