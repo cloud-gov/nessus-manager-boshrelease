@@ -7,3 +7,11 @@ if [ ${NESSUS_LICENSE} -eq 1 ]; then
 else
   /var/vcap/jobs/riemannc/bin/riemannc --host `hostname` --service nessus-manager.license --metric_sint64 ${NESSUS_LICENSE} --state "ok"
 fi
+
+tempfile=`mktemp`
+cat <<EOF > ${tempfile}
+# HELP nessus_manager_license_invalid Nessus manager license status
+# TYPE nessus_manager_license_invalid gauge
+nessus_manager_license_invalid ${NESSUS_LICENSE}
+EOF
+mv ${tempfile} /var/vcap/jobs/node_exporter/config/nessus.prom
