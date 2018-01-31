@@ -21,7 +21,7 @@ case $1 in
 
     if [[ ! -f $NESSUS_HOME/sbin/nessuscli ]]; then
       # Install package if needed and remove init scripts in /etc
-      dpkg -i /var/vcap/packages/nessus-manager/Nessus-6.7.0-ubuntu1110_amd64.deb
+      dpkg -i /var/vcap/packages/nessus-manager/Nessus-*.deb
       update-rc.d -f nessusd remove
       rm /etc/init.d/nessusd
 
@@ -34,7 +34,7 @@ case $1 in
 		<%= p("nessus-manager.password") %>
 		<%= p("nessus-manager.password") %>
 		y
-		
+
 		y
 		EOF
 
