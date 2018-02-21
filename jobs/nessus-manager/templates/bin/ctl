@@ -38,10 +38,11 @@ case $1 in
 		y
 		EOF
 
+   fi
       # Install the license but don't exit if it fails
-      set +e
-      $NESSUS_HOME/sbin/nessuscli fetch --register <%= p("nessus-manager.license") %>
-    fi
+   set +e
+   $NESSUS_HOME/sbin/nessuscli fetch --register <%= p("nessus-manager.license") %>
+   set -e
 
     ln -sf $NESSUS_HOME /opt/nessus
     ln -sf $NESSUS_HOME/var/nessus/logs $LOG_DIR
