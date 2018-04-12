@@ -5,14 +5,14 @@ packages:
 - jq-1.5
 properties:
   nessus-manager.license:
-    description: "[required] Nessus Manager license key"
-    default: EVAL-AAAA-BBBB-CCCC-DDDD
+    description: "Nessus Manager license key"
   nessus-manager.username:
-    description: "[required] Nessus Manager initial admin user"
-    default: admin
+    description: "Nessus Manager initial admin user"
   nessus-manager.password:
-    description: "[required] Nessus Manager initial password"
-    default: SaMpLePaSs+2016
+    description: "Nessus Manager initial password"
+  nessus-manager.expiration-days:
+    description: Number of days to retain scans
+    default: 90
 templates:
   bin/ctl: bin/ctl
   bin/health.sh: bin/health.sh
