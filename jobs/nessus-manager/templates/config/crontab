@@ -1,3 +1,4 @@
 # m h dom mon dow user command
 # purge all our agents before our daily scans run, the agents will relink themselves at the bottom of the hour
 20 0 * * * root /var/vcap/jobs/nessus-manager/bin/purge-agents.sh
+0 3 * * * root /var/vcap/jobs/nessus-manager/bin/emit-scans.sh

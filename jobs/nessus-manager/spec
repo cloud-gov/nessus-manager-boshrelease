@@ -18,6 +18,7 @@ templates:
   bin/health.sh: bin/health.sh
   bin/monit_debugger: bin/monit_debugger
   bin/purge-agents.sh: bin/purge-agents.sh
+  bin/emit-scans.sh: bin/emit-scans.sh
   config/crontab: config/crontab
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh.erb: helpers/ctl_setup.sh
