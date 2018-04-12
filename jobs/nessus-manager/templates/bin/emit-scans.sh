@@ -4,6 +4,8 @@ set -eux
 
 export PATH=$PATH:/var/vcap/packages/jq-1.5/bin
 
+EXPIRATION_DAYS="<%= p('nessus-manager.expiration-days') %>"
+
 rm -f /var/vcap/sys/log/nessus-manager/scans.log
 rm -f /var/vcap/sys/log/nessus-manager/hosts.log
 
@@ -18,6 +20,7 @@ token=$(curl -sk -X POST \
 EOF
 ) | jq -r ".token")
 
+# Emit scans and host vulnerabilities to logs
 for scanid in $(curl -sk https://127.0.0.1:8834/scans \
     -H "X-Cookie: token=${token}" \
     | jq -r ".scans[] | .id"); do
@@ -30,5 +33,19 @@ for scanid in $(curl -sk https://127.0.0.1:8834/scans \
       -H "X-Cookie: token=${token}" \
       >> /var/vcap/sys/log/nessus-manager/hosts.log
     echo >> /var/vcap/sys/log/nessus-manager/hosts.log
+  done
+done
+
+# Delete old scan history
+for scanid in $(curl -sk https://127.0.0.1:8834/scans \
+    -H "X-Cookie: token=${token}" \
+    | jq -r ".scans[] | .id"); do
+  for historyid in $(curl -sk "https://127.0.0.1:8834/scans/${scanid}" \
+      -H "X-Cookie: token=${token}" \
+      | jq -r --arg timestamp $(date --date "-${EXPIRATION_DAYS} days" +%s) \
+        ".history | select(.creation_date < (\$timestamp | tonumber)) | .history_id"); do
+    curl -sk -X DELETE \
+      "https://127.0.0.1:8834/scans/${scanid}/history/${historyid}" \
+      -H "X-Cookie: token=${token}"
   done
 done
