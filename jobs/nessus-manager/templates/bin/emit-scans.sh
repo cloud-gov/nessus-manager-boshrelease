@@ -53,8 +53,9 @@ done
 # if we reached here, then we didn't bomb out in some way because the API
 # changed or something, so let's log that success so that we can alert if
 # this gets old.
-cat <<EOF > /var/vcap/jobs/node_exporter/config/nessusscandelete.prom
+cat <<EOF > /var/vcap/jobs/node_exporter/config/nessusscandelete.prom.tmp
 # HELP nessus_manager_scandelete_time When emit-scans.sh on Nessus Manager successfully deleted scans
 # TYPE nessus_manager_scandelete_time gauge
 nessus_manager_scandelete_time $(date +%s)
 EOF
+mv /var/vcap/jobs/node_exporter/config/nessusscandelete.prom.tmp  /var/vcap/jobs/node_exporter/config/nessusscandelete.prom
