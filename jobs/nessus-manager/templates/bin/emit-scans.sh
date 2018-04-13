@@ -49,3 +49,12 @@ for scanid in $(curl -sk https://127.0.0.1:8834/scans \
       -H "X-Cookie: token=${token}"
   done
 done
+
+# if we reached here, then we didn't bomb out in some way because the API
+# changed or something, so let's log that success so that we can alert if
+# this gets old.
+cat <<EOF > /var/vcap/jobs/node_exporter/config/nessusscandelete.prom
+# HELP nessus_manager_scandelete_time When emit-scans.sh on Nessus Manager successfully deleted scans
+# TYPE nessus_manager_scandelete_time gauge
+nessus_manager_scandelete_time $(date +%s)
+EOF
