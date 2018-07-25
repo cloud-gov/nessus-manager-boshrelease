@@ -43,7 +43,7 @@ for scanid in $(curl -sk https://127.0.0.1:8834/scans \
   for historyid in $(curl -sk "https://127.0.0.1:8834/scans/${scanid}" \
       -H "X-Cookie: token=${token}" \
       | jq -r --arg timestamp $(date --date "-${EXPIRATION_DAYS} days" +%s) \
-        ".history | select(.creation_date < (\$timestamp | tonumber)) | .history_id"); do
+        "(.history // [])[] | select(.creation_date < (\$timestamp | tonumber)) | .history_id"); do
     curl -sk -X DELETE \
       "https://127.0.0.1:8834/scans/${scanid}/history/${historyid}" \
       -H "X-Cookie: token=${token}"
