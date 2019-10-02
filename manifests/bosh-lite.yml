@@ -25,6 +25,7 @@ instance_groups:
       - name: default
     vm_type: default
     stemcell: default
+    persistent_disk_type: default
     jobs:
       - name: nessus-manager
         release: nessus-manager
