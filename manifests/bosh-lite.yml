@@ -22,7 +22,7 @@ instance_groups:
     instances: 1
     azs: [z1]
     networks:
-      - name: nessus-manager
+      - name: default
     vm_type: default
     stemcell: default
     jobs:
