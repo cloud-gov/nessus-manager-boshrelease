@@ -10,7 +10,7 @@ bosh target 192.168.50.4
 git clone https://github.com/18F/cg-nessus-manager-boshrelease.git
 ```
 
-For local testing, set the `blobstore` provider to [`local` in the `config/final.yml`](https://bosh.io/docs/release-blobstore/#local-config). Your `final.yml` should look similar to this:
+For creating the release, either set the blobstore [`config/final.yml` to an s3 bucket](https://bosh.io/docs/release-blobstore/#s3-config) you own, [or if building on your own machine, you could set it to `local`](https://bosh.io/docs/release-blobstore/#local-config). If you're using `local`, your `config/final.yml` may look similar to this:
 
 ```yml
 ---
