@@ -1,0 +1,8 @@
+---
+- type: replace
+  path: /instance_groups/name=nessus-manager/vm_type
+  value: ((vm_type))
+
+- type: replace
+  path: /instance_groups/name=nessus-manager/persistent_disk_type
+  value: ((persistent_disk_type))
