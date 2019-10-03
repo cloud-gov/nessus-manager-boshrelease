@@ -14,7 +14,7 @@ update:
 
 stemcells:
   - alias: default
-    name: bosh-warden-boshlite-ubuntu-xenial-go_agent
+    os: ubuntu-xenial
     version: latest
 
 instance_groups:
