@@ -43,7 +43,7 @@ Deploy
 bosh deploy --vars-file=manifests/vars.example.yml
 ```
 
-The IP is available using
+The nessus manager's IP is available using
 
 ```sh
 # nessus manager IP:
