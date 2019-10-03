@@ -38,10 +38,9 @@ bosh -e vbox create-release --force
 bosh -e vbox upload-release
 ```
 
-Deploy using the manifest
-
-```sh
-bosh -e vbox -d nessus-manager manifests/bosh-lite.yml
+Deploy
+```
+bosh deploy --vars-file=manifests/vars.example.yml
 ```
 
 The IP is available using
