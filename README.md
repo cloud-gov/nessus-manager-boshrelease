@@ -38,9 +38,10 @@ bosh -e vbox create-release --force
 bosh -e vbox upload-release
 ```
 
-Deploy
-```
-bosh deploy --vars-file=manifests/vars.example.yml
+Deploy using the manifest
+
+```sh
+bosh -e vbox -d nessus-manager deploy manifests/bosh-lite.yml --vars-file=manifests/vars.example.yml
 ```
 
 The nessus manager's IP is available using
@@ -50,7 +51,7 @@ The nessus manager's IP is available using
 bosh -e vbox -d nessus-manager instances
 ```
 
---
+---
 
 A license key and administrator credentials are required.  Note that although a license key is required by this release, it can be an invalid key; A valid key can be entered later with the `nessuscli` command line utility.
 
@@ -58,4 +59,4 @@ For configuration information, see the spec at `jobs/nessus-manager/spec` and ex
 
 Nessus resides on a persistent disk; size the disk accordingly.
 
-After deployment, the web UI is available at https://NESSUS_MANAGER_IP:8834 (for a bosh-lite deployment) with an SSL certificate signed by Nessus Certification Authority.
+After deployment, the web UI is available at https://NESSUS_MANAGER_IP:8834 (for a `bosh-lite` deployment) with an SSL certificate signed by Nessus Certification Authority.
