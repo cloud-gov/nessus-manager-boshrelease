@@ -20,7 +20,8 @@ stemcells:
 instance_groups:
   - name: nessus-manager
     instances: 1
-    azs: [z1]
+    azs:
+    - z1
     networks:
       - name: default
     vm_type: default
@@ -36,5 +37,5 @@ instance_groups:
             password: ((nessus_manager_password))
 
 variables:
-- name: nessus_manager_password
-  type: password
+  - name: nessus_manager_password
+    type: password
