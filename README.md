@@ -2,53 +2,35 @@
 
 ## Usage
 
-These examples use [bosh-lite](https://github.com/cloudfoundry/bosh-lite).
+Due to licensing, we cannot package the Nessus products. These instructions assume a Tenable subscription.
 
-Target bosh and clone the repo
+1. Download the Nessus deb package from [Tenanble](https://www.tenable.com/downloads/nessus) and add the Nessus deb package as a blob:
 
-```sh
-bosh -e vbox env
-git clone https://github.com/18F/cg-nessus-manager-boshrelease.git
 ```
-
-For creating the release, either set the blobstore [`config/final.yml` to an s3 bucket](https://bosh.io/docs/release-blobstore/#s3-config) you own, [or if building on your own machine, you could set it to `local`](https://bosh.io/docs/release-blobstore/#local-config). If you're using `local`, your `config/final.yml` may look similar to this:
-
-```yml
----
-final_name: nessus-manager
-blobstore:
-  provider: local
-  options:
-    blobstore_path: /tmp/test-blobs
-```
-
-Download the Nessus deb package from http://www.tenable.com
-
-Add the Nessus deb package as a blob
-
-```sh
+git clone 18f/cg-nessus-manager-boshrelease
 cd cg-nessus-manager-boshrelease
-bosh -e vbox add-blob path/to/Nessus*.deb nessus-manager
+mkdir -p blobs/nessus-manager/
+cp ~/Downloads/Nessus-* blobs/nessus-manager/
+bosh add-blob ./blobs/nessus-manager/Nessus-* nessus-manager/Nessus-*
 ```
 
-Create and upload a release
-
-```sh
-bosh -e vbox create-release --force
-bosh -e vbox upload-release
+2. Create and upload a release:
+```
+git add .
+git commit -S -sm "updating nessus manager."
+bosh create release
+bosh upload release
 ```
 
-Deploy using the manifest
-
-```sh
-bosh -e vbox -d nessus-manager deploy manifests/nessus-manager.yml --vars-file=manifests/vars.example.yml
+3. Set deployment manifest:
+```
+bosh deployment manifests/bosh-lite.yml
 ```
 
-The nessus manager's IP is available using
-
+4. Deploy:
 ```sh
-# nessus manager IP:
-bosh -e vbox -d nessus-manager instances
+bosh -d nessus-manager deploy manifests/bosh-lite.yml
+bosh -d nessus-manager instances
 ```
 
 ---
@@ -57,6 +39,4 @@ A license key and administrator credentials are required. Note that although a l
 
 For configuration information, see the spec at `jobs/nessus-manager/spec` and example manifest at `manifests/nessus-manager.yml`.
 
-Nessus resides on a persistent disk; size the disk accordingly.
-
-After deployment, the web UI is available at https://NESSUS_MANAGER_IP:8834 (for a `bosh-lite` deployment) with an SSL certificate signed by Nessus Certification Authority.
+Nessus resides on a persistent disk; size the disk accordingly. After deployment, the web UI is available at https://IP:8834 (with an SSL certificate signed by Nessus Certification Authority.
