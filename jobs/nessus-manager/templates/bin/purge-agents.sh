@@ -1,6 +1,19 @@
 #!/bin/bash
 
+# our version of nessus-manager does a poor job of maintaining 
+# agents on ephemeral nodes. As a work around 
+# * first unlink all agents, (./purge-agents.sh unlink)
+# * wait for them relink if they're active (e.g at :30)
+# * delete agents that haven't relinked (./purge-agents.sh delete)
+# * hope they then register and link 
+
 set -e
+case $1 in 
+  unlink) ACTION=unlink;;
+  delete) ACTION=delete;;
+  *) echo "Usage: $0 unlink|delete"
+     exit 1;;
+esac
 
 # where is jq?
 JQ=/var/vcap/packages/jq-1.5/bin/jq
@@ -24,9 +37,18 @@ napi() {
     curl -s -k ${METHOD} -H "X-Cookie: token=${TOKEN};" ${NESSUS_URL}${1}
 }
 
-# iterate through all our agents and unlink them
+# iterate through all our agents and unlink or delete them
 for sid in $(napi /scanners | ${JQ} .scanners[].id); do
     for aid in $(napi /scanners/${sid}/agents | ${JQ} -r .agents[].id); do
-        napi /scanners/${sid}/agents/${aid} DELETE
+        case $ACTION in
+          unlink) 
+            napi /scanners/${sid}/agents/${aid} DELETE;;
+          delete) 
+            napi /scanners/${sid}/agents/${aid} GET | 
+              $JQ '.status' | grep -q offline && napi /agents/${aid} DELETE;;
+          *)
+            echo "FAIL - invalid action: $ACTION"
+            exit 1;;
+       esac
     done
 done
