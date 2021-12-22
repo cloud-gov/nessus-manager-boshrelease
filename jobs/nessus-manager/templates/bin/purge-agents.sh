@@ -8,7 +8,7 @@
 # * hope they then register and link 
 
 set -e
-case $1 in 
+case $1 in
   unlink) ACTION=unlink;;
   delete) ACTION=delete;;
   *) echo "Usage: $0 unlink|delete"
@@ -33,19 +33,27 @@ napi() {
         METHOD="-X GET"
     fi
 
+    # debugging only
+    # echo napi: ${METHOD} ${1} 1>&2
+
     # yes nessus uses it's own special header called X-Cookie :/
     curl -s -k ${METHOD} -H "X-Cookie: token=${TOKEN};" ${NESSUS_URL}${1}
 }
 
 # iterate through all our agents and unlink or delete them
 for sid in $(napi /scanners | ${JQ} .scanners[].id); do
-    for aid in $(napi /scanners/${sid}/agents | ${JQ} -r .agents[].id); do
+    for aid in $(napi /scanners/${sid}/agents | ${JQ} -r '.agents[].id'); do
         case $ACTION in
-          unlink) 
-            napi /scanners/${sid}/agents/${aid} DELETE;;
-          delete) 
-            napi /scanners/${sid}/agents/${aid} GET | 
-              $JQ '.status' | grep -q offline && napi /agents/${aid} DELETE;;
+          unlink)
+            napi /scanners/${sid}/agents/${aid} GET |
+              ${JQ} -r '.status' | grep -q offline &&
+              ( napi /scanners/${sid}/agents/${aid} DELETE && /bin/sleep 0.2 )
+            ;;
+          delete)
+            napi /agents/${aid} GET |
+              $JQ -r '.status' | grep -q offline &&
+              ( napi /agents/${aid} DELETE && /bin/sleep 0.2 )
+            ;;
           *)
             echo "FAIL - invalid action: $ACTION"
             exit 1;;
