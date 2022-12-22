@@ -4,34 +4,19 @@
 
 Due to licensing, we cannot package the Nessus products. These instructions assume a Tenable subscription.
 
-1. Download the Nessus deb package from [Tenanble](https://www.tenable.com/downloads/nessus) and add the Nessus deb package as a blob:
+## Updating Nessus blob
 
-```
-git clone 18f/cg-nessus-manager-boshrelease
-cd cg-nessus-manager-boshrelease
-mkdir -p blobs/nessus-manager/
-cp ~/Downloads/Nessus-* blobs/nessus-manager/
-bosh add-blob ./blobs/nessus-manager/Nessus-* nessus-manager/Nessus-*
-```
+Download the Nessus deb package from [Tenable](https://www.tenable.com/downloads/nessus) and add the Nessus deb package as a blob:
 
-2. Create and upload a release:
-```
-git add .
-git commit -S -sm "updating nessus manager."
-bosh create release
-bosh upload release
-```
+    ```shell
+    git clone cloud-gov/cg-nessus-manager-boshrelease
+    cd cg-nessus-manager-boshrelease
+    mkdir -p blobs/nessus-manager/
+    cp ~/Downloads/Nessus-* blobs/nessus-manager/
+    bosh add-blob ./blobs/nessus-manager/Nessus-<version> nessus-manager/Nessus-<version>
+    ```
 
-3. Set deployment manifest:
-```
-bosh deployment manifests/bosh-lite.yml
-```
-
-4. Deploy:
-```sh
-bosh -d nessus-manager deploy manifests/bosh-lite.yml
-bosh -d nessus-manager instances
-```
+The new blob then needs to be uploaded to the blobstore. For [guidance on that process and further informationa bout managing BOSH releases in general, see the BOSH runbook in the internal-docs](https://github.com/cloud-gov/internal-docs/blob/main/docs/runbooks/BOSH/building-bosh-releases.md)
 
 ---
 
