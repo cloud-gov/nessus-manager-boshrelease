@@ -4,4 +4,5 @@ jq/jq-1.5.gz:
   sha: 2e281d558b5d2c4695f9a9de87dca70d3e7cdc16
 nessus-manager/Nessus-10.5.4-ubuntu1404_amd64.deb:
   size: 66681436
+  object_id: 389126ae-9959-42ee-6e74-79cff075bef4
   sha: sha256:6102cdbee751aab8b4a8a6bfe41dc89250ca4bba51d963b763c78df8217e8a9b
