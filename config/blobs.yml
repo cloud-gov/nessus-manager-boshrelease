@@ -2,7 +2,6 @@ jq/jq-1.5.gz:
   size: 1364760
   object_id: 6c933704-2057-4fa6-938b-ae67d9d51e30
   sha: 2e281d558b5d2c4695f9a9de87dca70d3e7cdc16
-nessus-manager/Nessus-10.5.3-debian10_amd64.deb:
-  size: 65131724
-  object_id: 8e30d1c8-e4a1-4198-52b7-e0fb5d25ae0b
-  sha: sha256:7a757b41deafc79b4aebb3c23305990b9ffb4f5aee1b59bfface7d3c7e27a2bb
+nessus-manager/Nessus-10.5.4-ubuntu1404_amd64.deb:
+  size: 66681436
+  sha: sha256:6102cdbee751aab8b4a8a6bfe41dc89250ca4bba51d963b763c78df8217e8a9b
