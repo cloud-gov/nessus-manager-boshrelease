@@ -3,3 +3,4 @@
 10 * * * * root /var/vcap/jobs/nessus-manager/bin/purge-agents.sh unlink
 20 * * * * root /var/vcap/jobs/nessus-manager/bin/purge-agents.sh delete
 0 3 * * * root /var/vcap/jobs/nessus-manager/bin/emit-scans.sh
+*/5 * * * * root  /var/vcap/jobs/nessus-manager/bin/health.sh

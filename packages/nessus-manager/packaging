@@ -8,4 +8,3 @@ set -u # report the usage of uninitialized variables
 for DEB in $(ls -1 nessus-manager/*.deb); do
   cp $DEB $BOSH_INSTALL_TARGET
 done
-
