@@ -9,8 +9,8 @@ Due to licensing, we cannot package the Nessus products. These instructions assu
 Download the Nessus deb package from [Tenable](https://www.tenable.com/downloads/nessus) and add the Nessus deb package as a blob:
 
     ```shell
-    git clone cloud-gov/cg-nessus-manager-boshrelease
-    cd cg-nessus-manager-boshrelease
+    git clone cloud-gov/nessus-manager-boshrelease
+    cd nessus-manager-boshrelease
     mkdir -p blobs/nessus-manager/
     cp ~/Downloads/Nessus-* blobs/nessus-manager/
     bosh add-blob ./blobs/nessus-manager/Nessus-<version> nessus-manager/Nessus-<version>
