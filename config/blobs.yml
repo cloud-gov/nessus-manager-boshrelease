@@ -1,7 +1,3 @@
-jq/jq-1.5.gz:
-  size: 1364760
-  object_id: 6c933704-2057-4fa6-938b-ae67d9d51e30
-  sha: 2e281d558b5d2c4695f9a9de87dca70d3e7cdc16
 nessus-manager/Nessus-10.12.0-ubuntu1604_amd64.deb:
   size: 72716028
   object_id: e2f15c4b-8716-4559-4363-f6dfa014e52d

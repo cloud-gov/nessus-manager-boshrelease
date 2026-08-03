@@ -2,7 +2,6 @@
 name: nessus-manager
 packages:
 - nessus-manager
-- jq-1.5
 properties:
   nessus-manager.license:
     description: "Nessus Manager license key"
