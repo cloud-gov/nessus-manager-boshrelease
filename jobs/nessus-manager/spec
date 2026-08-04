@@ -5,10 +5,9 @@ packages:
 properties:
   nessus-manager.license:
     description: "Nessus Manager license key"
-  nessus-manager.username:
-    description: "Nessus Manager initial admin user"
-  nessus-manager.password:
-    description: "Nessus Manager initial password"
+  nessus-manager.groups:
+    description: "Nessus Manager Group"
+    default: internal
   nessus-manager.host:
     description: "Nessus Manager Host"
   nessus-manager.port:
