@@ -24,7 +24,6 @@ case $1 in
       # Move Nessus to the persistent disk and link from the original location
       mkdir /var/vcap/store/nessus-manager/opt
       mv /opt/nessus /var/vcap/store/nessus-manager/opt
-		EOF
 
    fi
       # Install the license but don't exit if it fails
