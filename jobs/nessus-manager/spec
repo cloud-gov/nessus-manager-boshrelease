@@ -2,24 +2,23 @@
 name: nessus-manager
 packages:
 - nessus-manager
-- jq-1.5
 properties:
   nessus-manager.license:
     description: "Nessus Manager license key"
-  nessus-manager.username:
-    description: "Nessus Manager initial admin user"
-  nessus-manager.password:
-    description: "Nessus Manager initial password"
+  nessus-manager.groups:
+    description: "Nessus Manager Group"
+    default: internal
+  nessus-manager.host:
+    description: "Nessus Manager Host"
+  nessus-manager.port:
+    description: "Nessus Manager port"
+    default: 443
   nessus-manager.expiration-days:
     description: Number of days to retain scans
     default: 90
 templates:
   bin/ctl: bin/ctl
-  bin/health.sh: bin/health.sh
   bin/monit_debugger: bin/monit_debugger
-  bin/purge-agents.sh: bin/purge-agents.sh
-  bin/emit-scans.sh: bin/emit-scans.sh
-  config/crontab: config/crontab
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh.erb: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
