@@ -19,7 +19,6 @@ case $1 in
       # Install package if needed and remove init scripts in /etc
       dpkg -i /var/vcap/packages/nessus-manager/Nessus-*.deb
       update-rc.d -f nessusd remove
-      rm /etc/init.d/nessusd
 
       # Move Nessus to the persistent disk and link from the original location
       mkdir /var/vcap/store/nessus-manager/opt
@@ -28,7 +27,7 @@ case $1 in
    fi
       # Install the license but don't exit if it fails
    set +e
-   $NESSUS_HOME/sbin/nessuscli managed link --key=<%= p("nessus-manager.license") %> --host=<%= p("nessus-manager.host") %> --port=<%= p("nessus-manager.port") %> --groups=<%= p("nessus-manager.groups") %>
+   $NESSUS_HOME/sbin/nessuscli managed link --key=<%= p("nessus-manager.license") %> --host=<%= p("nessus-manager.host") %> --port=<%= p("nessus-manager.port") %> --groups=<%= p("nessus-manager.groups") %> --name=<%= spec.deployment %>-<%= name %>-<%= spec.index %>
    set -e
 
     ln -sf $NESSUS_HOME /opt/nessus
