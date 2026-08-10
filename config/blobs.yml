@@ -1,4 +1,4 @@
-nessus-manager/Nessus-10.12.0-ubuntu1604_amd64.deb:
-  size: 72716028
-  object_id: e2f15c4b-8716-4559-4363-f6dfa014e52d
-  sha: sha256:76754f253f5df6dff5d9309a260d77d10ec8142490fd087b2a37be1fd2097efd
+nessus-manager/Nessus-10.12.3-ubuntu1604_amd64.deb:
+  size: 75629374
+  object_id: 1a555f36-1b3a-4d9f-65b1-cda2884bd286
+  sha: sha256:1eaf8adfc92b47ae4ada2795971dd7f01f485083b4ab48878ec54d53396b8b48
